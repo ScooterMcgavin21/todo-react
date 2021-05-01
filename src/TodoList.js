@@ -5,12 +5,18 @@ import Todo from './Todo'
 class TodoList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      list: [{ todo: "Get a jerb" }, { todo: "Get a hairscut" }]
+    };
   }
 
   render() {
+    const list = this.state.list.map(item => (
+      <Todo todoItem={item.todo} />
+    ));
     return (
       <div>
-        <Todo todoItem='Getter Done' />
+        {list}
       </div>
     );
   }
@@ -18,3 +24,4 @@ class TodoList extends Component {
 }
 
 export default TodoList;
+
