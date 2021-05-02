@@ -13,6 +13,7 @@ class TodoList extends Component {
     };
     this.create = this.create.bind(this);
     this.remove = this.remove.bind(this);
+    this.update = this.update.bind(this);
   }
   // Takes newTodo object and adds into todos state
   create(newTodo) {
@@ -26,16 +27,29 @@ class TodoList extends Component {
       list: this.state.list.filter(item => item.id !== id)
     });
   }
+  // updates Todo, take the id and change the todo to whats passed
+  update(id, updateTodo) {
+    const updatedTodo = this.state.list.map(item => {
+      if (item.id === id) {
+        return { ...item, todoItem: updateTodo }
+      }
+      return item;
+    });
+    this.setState({ list: updatedTodo });
+  }
 
   render() {
     // Iterates over each Todo item in the state.list array and builds each Todo item to render below  
     const list = this.state.list.map(item => {
-      return <Todo
-        key={item.id}
-        id={item.id}
-        todoItem={item.todoItem}
-        removeTodo={this.remove}
-      />;
+      return (
+        <Todo
+          key={item.id}
+          id={item.id}
+          todoItem={item.todoItem}
+          removeTodo={this.remove}
+          updateTodos={this.update}
+        />
+      );
     });
     return (
       <div>
