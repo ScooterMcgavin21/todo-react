@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 /** This component renders a form with one text input for the task to be created.
  *  When submitted, a new Todo component should be created.
  */
@@ -21,7 +22,7 @@ class NewTodoForm extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createTodo(this.state);
+    this.props.createTodo({ ...this.state, id: uuidv4() });
     this.setState({ todoItem: "" });
   }
 
