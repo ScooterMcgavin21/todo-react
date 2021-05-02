@@ -7,7 +7,7 @@ class NewTodoForm extends Component {
   constructor(props) {
     super(props);
     // deffaukt todo is an empty string
-    this.state = { newTodoItem: "" };
+    this.state = { todoItem: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,20 +21,20 @@ class NewTodoForm extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createTodo(this.state.newTodoItem);
-    this.setState({ newTodoItem: "" });
+    this.props.createTodo(this.state);
+    this.setState({ todoItem: "" });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor='newTodo'></label>
+        <label htmlFor='todoItem'>New Todo</label>
         <input
           type='text'
           placeholder='New Todo'
-          id='newTodo'
-          name='newTodoItem'
-          value={this.state.newTodoItem}
+          id='todoItem'
+          name='todoItem'
+          value={this.state.todoItem}
           onChange={this.handleChange}
         />
         <button>Add Todo</button>

@@ -7,7 +7,7 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [{ todo: "Get a jerb" }, { todo: "Get a hairscut" }]
+      list: [{ todoItem: "Get a jerb" }, { todoItem: "Get a hairscut" }]
     };
     this.create = this.create.bind(this);
   }
@@ -19,13 +19,13 @@ class TodoList extends Component {
   }
 
   render() {
-    const todoList = this.state.list.map(item => {
-      return <Todo todoItem={item.todo} />;
+    const list = this.state.list.map(item => {
+      return <Todo todoItem={item.todoItem} />;
     });
     return (
       <div>
         <NewTodoForm createTodo={this.create} />
-        {todoList}
+        <ul>{list}</ul>
 
       </div>
     );
