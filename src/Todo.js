@@ -64,8 +64,12 @@ class Todo extends Component {
       )
     } else {
       displayItem = (
-        <div className={this.props.complete ? "complete" : ""} onClick={this.handleToggle}> {this.props.todoItem}
-          <span className='todo-icons'><i className="fas fa-pen" onClick={this.toggleForm}></i> <i className="fas fa-trash" onClick={this.handleRemove}></i></span>
+        <div className={`todo-item-container ${this.props.complete ? "todo-item-done" : ""}`}>
+          <div className='todo-item-name'><span onClick={this.handleToggle}>{this.props.todoItem}</span></div>
+          <div className='todo-item-icons'>
+            <i className="fas fa-pen" onClick={this.toggleForm}></i>
+            <i className="fas fa-trash" onClick={this.handleRemove}></i>
+          </div>
         </div>
       );
     }
@@ -78,4 +82,5 @@ class Todo extends Component {
 }
 
 export default Todo;
+
 
