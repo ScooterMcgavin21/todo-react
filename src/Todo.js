@@ -47,7 +47,7 @@ class Todo extends Component {
     let displayItem;
     if (this.state.editTodo) {
       displayItem = (
-        <div>
+        <div className='todo-item-container'>
           <form onSubmit={this.handleUpdate}>
             <input
               type="text"
@@ -55,8 +55,11 @@ class Todo extends Component {
               name="todoItem"
               onChange={this.handleChange}
             />
-            <button>Save</button>
           </form>
+          <div className='todo-item-icons'>
+            <i className="fas fa-save" onClick={this.handleUpdate}></i>
+            <i className="fas fa-trash" onClick={this.handleRemove}></i>
+          </div>
         </div>
       )
     } else {
