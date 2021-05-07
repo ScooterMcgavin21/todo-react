@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewTodoForm from './NewTodoForm';
-import Todo from './Todo'
+import Todo from './Todo';
+//import './NewTodoForm.css';
 
 /** renders NewTodoForm component and the list of todo components */
 // state containing all todos in this component thereffor add constructor 
@@ -14,6 +15,7 @@ class TodoList extends Component {
     this.create = this.create.bind(this);
     this.remove = this.remove.bind(this);
     this.update = this.update.bind(this);
+    this.toggleCompletion = this.toggleCompletion.bind(this);
   }
   // Takes newTodo object and adds into todos state
   create(newTodo) {
@@ -37,7 +39,16 @@ class TodoList extends Component {
     });
     this.setState({ list: updatedTodo });
   }
-
+  // Toggles completion
+  toggleCompletion(id) {
+    const updatedTodo = this.state.list.map(item => {
+      if (item.id === id) {
+        return { ...item, complete: !item.complete }
+      }
+      return item;
+    });
+    this.setState({ list: updatedTodo });
+  }
   render() {
     // Iterates over each Todo item in the state.list array and builds each Todo item to render below  
     const list = this.state.list.map(item => {
@@ -46,8 +57,10 @@ class TodoList extends Component {
           key={item.id}
           id={item.id}
           todoItem={item.todoItem}
+          complete={item.complete}
           removeTodo={this.remove}
           updateTodos={this.update}
+          toggleTodo={this.toggleCompletion}
         />
       );
     });

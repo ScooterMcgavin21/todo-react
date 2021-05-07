@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import './Todo.css';
 /** Component displays a div with the task of the todo
  * For each Todo component, there will be a button with the text "X", when clicked, removed the todo.
  */
+
 class Todo extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,7 @@ class Todo extends Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
   // pass in removeTodo from the parent
   handleRemove() {
@@ -35,6 +38,10 @@ class Todo extends Component {
       [evt.target.name]: evt.target.value
     });
   }
+  // Toggle todo completion (toggleTodo)
+  handleToggle(evt) {
+    this.props.toggleTodo(this.props.id);
+  }
   render() {
 
     let displayItem;
@@ -54,13 +61,18 @@ class Todo extends Component {
       )
     } else {
       displayItem = (
-        <div className='todo-item'> {this.props.todoItem}
+        <div className={this.props.complete ? "complete" : ""} onClick={this.handleToggle}> {this.props.todoItem}
           <span className='todo-icons'><i className="fas fa-pen" onClick={this.toggleForm}></i> <i className="fas fa-trash" onClick={this.handleRemove}></i></span>
         </div>
       );
     }
-    return displayItem;
+    return (
+      <div className='todo-item'>
+        {displayItem}
+      </div>
+    )
   }
 }
 
 export default Todo;
+
