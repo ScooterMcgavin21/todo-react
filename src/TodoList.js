@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NewTodoForm from './NewTodoForm';
 import Todo from './Todo';
-//import './NewTodoForm.css';
+import './TodoList.css';
 
 /** renders NewTodoForm component and the list of todo components */
 // state containing all todos in this component thereffor add constructor 
@@ -65,10 +65,12 @@ class TodoList extends Component {
       );
     });
     return (
-      <div>
-        <NewTodoForm createTodo={this.create} />
+      <div className='TodoList'>
+        <h1>
+          Todo List <span>Todo List App with React</span>
+        </h1>
         <ul>{list}</ul>
-
+        <NewTodoForm createTodo={this.create} />
       </div>
     );
   }

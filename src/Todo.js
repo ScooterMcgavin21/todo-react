@@ -48,27 +48,35 @@ class Todo extends Component {
     if (this.state.editTodo) {
       displayItem = (
         <div className='todo-item-container'>
-          <form onSubmit={this.handleUpdate}>
+          <form className='todo-edit-form' onSubmit={this.handleUpdate}>
             <input
               type="text"
               value={this.state.todoItem}
               name="todoItem"
               onChange={this.handleChange}
             />
+            <button>Save</button>
           </form>
-          <div className='todo-item-icons'>
-            <i className="fas fa-save" onClick={this.handleUpdate}></i>
-            <i className="fas fa-trash" onClick={this.handleRemove}></i>
-          </div>
         </div>
       )
     } else {
       displayItem = (
-        <div className={`todo-item-container ${this.props.complete ? "todo-item-done" : ""}`}>
-          <div className='todo-item-name'><span onClick={this.handleToggle}>{this.props.todoItem}</span></div>
+        <div className='todo-item-container'>
+          <li
+            className=
+            {this.props.complete ? "todo-item complete" : "todo-item"
+            }
+            onClick={this.handleToggle}
+          >
+            {this.props.todoItem}
+          </li>
           <div className='todo-item-icons'>
-            <i className="fas fa-pen" onClick={this.toggleForm}></i>
-            <i className="fas fa-trash" onClick={this.handleRemove}></i>
+            <button onClick={this.toggleForm}>
+              <i className="fas fa-pen" />
+            </button>
+            <button onClick={this.handleRemove}>
+              <i className="fas fa-trash" />
+            </button>
           </div>
         </div>
       );
